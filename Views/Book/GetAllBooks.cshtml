@@ -1,0 +1,10 @@
+﻿@model IEnumerable<BookStore.Models.BookModel>
+@{
+    Layout = "_Layout";
+}
+
+<h1>GetAllBooks</h1>
+@foreach (var book in Model)
+{ 
+    <p>@book.Title</p>
+}

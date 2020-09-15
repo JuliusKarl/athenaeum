@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BookStore.Repository;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,10 @@ namespace BookStore.Controllers
 {
     public class HomeController : Controller 
     {
-        public string Index() 
+        public ViewResult Index() 
         {
-            return "Hello from Views";
+            ViewData["Title"] = "Home";
+            return View();
         }
     }
 }
