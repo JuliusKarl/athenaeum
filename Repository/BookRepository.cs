@@ -25,11 +25,11 @@ namespace BookStore.Repository
         {
             return new List<BookModel>()
             {
-                new BookModel(){ Id = 0, Title ="Genesis", Author = "Moses" },
-                new BookModel(){ Id = 1, Title ="Romans", Author = "Paul of Tarsus" },
-                new BookModel(){ Id = 2, Title ="Revelation", Author = "John" },
-                new BookModel(){ Id = 3, Title ="Proverbs", Author = "King Solomon" },
-                new BookModel(){ Id = 4, Title ="The Gospel of Matthew", Author = "Matthew" },
+                new BookModel(){ Id = 0, Title ="Genesis", Author = "Moses" , Description = "The first book of the Bible."},
+                new BookModel(){ Id = 1, Title ="Romans", Author = "Paul of Tarsus", Description = "The letter of Paul to the Romans."},
+                new BookModel(){ Id = 2, Title ="Revelation", Author = "John", Description = "The revelation of John."},
+                new BookModel(){ Id = 3, Title ="Proverbs", Author = "King Solomon", Description = "Words of wisdom by King Solomon."},
+                new BookModel(){ Id = 4, Title ="Matthew", Author = "Matthew", Description = "The Gospel according to Matthew."},
             };
         }
     }
