@@ -5,10 +5,55 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/Style.css" rel="stylesheet" />
 </head>
 <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="/">Book Store</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            @*<a class="nav-link" asp-action="index" asp-controller="home">Home</a>*@
+                            <a class="nav-link" href="/home/index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            @*<a class="nav-link" asp-action="aboutus" asp-controller="home">About</a>*@
+                            <a class="nav-link" href="/home/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            @*<a class="nav-link" asp-action="contactus" asp-controller="home">Contact</a>*@
+                            <a class="nav-link" href="/home/contact">Contact</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Book Options
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="nav-link" asp-action="getallbooks" asp-controller="book">All Books</a>
+                                <a class="nav-link" asp-action="addnewbook" asp-controller="book">Add New</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="btn btn-outline-primay" href="#">Login</a>
+                            <a class="btn btn-primary" href="#">Register</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div>
         @RenderBody()
     </div>
+    <footer class="border-top footer text-muted text-center">
+        <small>COPYRIGHT &copy; BOOKSTORE APPLICATION @DateTime.Now.Year <i>JKMACRO</i> and <i>MACROMEDIA</i> DEVELOPMENT AND PUBLISHING</small>
+    </footer>
 </body>
 </html>

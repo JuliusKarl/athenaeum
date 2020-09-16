@@ -14,5 +14,15 @@ namespace BookStore.Controllers
             ViewData["Title"] = "Home";
             return View();
         }
+        public ViewResult About()
+        {
+            ViewData["Title"] = "About";
+            return View();
+        }
+        public ViewResult Contact()
+        {
+            ViewData["Title"] = "Contact";
+            return View();
+        }
     }
 }
