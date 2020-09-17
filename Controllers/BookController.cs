@@ -15,18 +15,21 @@ namespace BookStore.Controllers
         {
             _bookRepository = new BookRepository();
         }
+        [Route("All")]
         public ViewResult GetAllBooks()
         {
             var data =  _bookRepository.GetAllBooks();
             ViewData["Title"] = "All Books";
             return View(data);
         }
+        [Route("Book")]
         public ViewResult GetBook(int id)
         {
             var data = _bookRepository.GetBookById(id);
             ViewData["Title"] = "Book";
             return View(data);
         }
+        [Route("Search")]
         public ViewResult SearchBook(string title, string author)
         {
             var data =  _bookRepository.SearchBook(title, author);
