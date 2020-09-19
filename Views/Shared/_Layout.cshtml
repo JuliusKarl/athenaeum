@@ -23,25 +23,26 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse">
+                <div id="navbarNav" class="collapse navbar-collapse">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index" >Home</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="About" >About</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Books
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="nav-link" asp-controller="Book" asp-action="GetAllBooks" >All Books</a>
-                                <a class="nav-link" asp-controller="Book" asp-action="SearchBook" >Search</a>
+                                <a class="nav-link" asp-controller="Book" asp-action="SearchBook">Search</a>
+                                <a class="nav-link" asp-controller="Book" asp-action="GetAllBooks">All Books</a>
+                                <a class="nav-link" asp-controller="Book" asp-action="AddNewBook">New Book</a>
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Contact" >Contact</a>
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -52,10 +53,14 @@
         @RenderBody()
     </div>
     <footer class="footer text-center">
-        <small>Copyright &copy; Athenaeum @DateTime.Now.Year &nbsp;| &nbsp; Powered by Syno</small>
+        <small>Copyright &copy; Athenaeum @DateTime.Now.Year &nbsp;| &nbsp; Powered by Syno</small>&nbsp;&nbsp;
+        <a href="https://www.linkedin.com/in/juliuskarl/"><img alt="linkedin" height="20" width="20" src="~/img/icons/linkedin.png" /></a>&nbsp;
+        <a href="https://github.com/JuliusKarl"><img alt="github" height="20" width="20" src="~/img/icons/github.png" /></a>&nbsp;
+        <a href="https://medium.com/@@julius.karl.macrohon"><img alt="medium" height="20" width="20" src="~/img/icons/medium.png" /></a>
     </footer>
 
     <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/js/Javascript.js"></script>
     <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
 
 </body>

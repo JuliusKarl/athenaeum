@@ -11,21 +11,21 @@ namespace BookStore.Controllers
     public class BookController : Controller
     {
         private readonly BookRepository _bookRepository = null;
-        public BookController()
+        public BookController(BookRepository bookRepository)
         {
-            _bookRepository = new BookRepository();
+            _bookRepository = bookRepository;
         }
         [Route("All")]
-        public ViewResult GetAllBooks()
+        public async Task<ViewResult> GetAllBooks()
         {
-            var data =  _bookRepository.GetAllBooks();
+            var data =  await _bookRepository.GetAllBooks();
             ViewData["Title"] = "All Books";
             return View(data);
         }
         [Route("Book")]
-        public ViewResult GetBook(int id)
+        public async Task<ViewResult> GetBook(int id)
         {
-            var data = _bookRepository.GetBookById(id);
+            var data = await _bookRepository.GetBookById(id);
             ViewData["Title"] = "Book";
             return View(data);
         }
@@ -35,6 +35,23 @@ namespace BookStore.Controllers
             var data =  _bookRepository.SearchBook(title, author);
             ViewData["Title"] = "Search";
             return View(data);
+        }
+        [Route("New")]
+        public ViewResult AddNewBook(bool isSuccess = false, int bookId = 0)
+        {
+            ViewData["Title"] = "New Book";
+            ViewBag.IsSuccess = isSuccess;
+            ViewBag.BookId = bookId;
+            return View();
+        }
+        [HttpPost]
+        [Route("New")]
+        public async Task<IActionResult> AddNewBook(BookModel bookModel)
+        {
+            ViewData["Title"] = "New Book";
+            int id = await _bookRepository.AddNewBook(bookModel);
+            if (id > 0) { return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookId = id }); }
+            return View();
         }
     }
 }
