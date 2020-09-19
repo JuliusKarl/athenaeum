@@ -11,7 +11,7 @@ namespace BookStore.Controllers
     {
         public ViewResult Index() 
         {
-            ViewData["Title"] = "Home";
+            ViewData["Title"] = "Athenaeum";
             return View();
         }
         public ViewResult About()
