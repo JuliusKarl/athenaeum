@@ -17,7 +17,7 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services) 
         {
             services.AddControllersWithViews();
-            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.; Database = BookStore; Integrated Security = True"));
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=athenaeum.ct5iksibomdv.us-east-1.rds.amazonaws.com,1433; Database=athenaeum; User Id=Julius; Password=Juliuskarl24031997;"));
 #if DEBUG  
             services.AddRazorPages().AddRazorRuntimeCompilation();
 #endif
