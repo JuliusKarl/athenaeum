@@ -39,6 +39,7 @@ namespace BookStore.Controllers
         [Route("New")]
         public ViewResult AddNewBook(bool isSuccess = false, int bookId = 0)
         {
+            ViewBag.Languages = new List<String>() { "English", "Korean", "Japanese", "Chinese" };
             ViewData["Title"] = "New Book";
             ViewBag.IsSuccess = isSuccess;
             ViewBag.BookId = bookId;
