@@ -9,7 +9,7 @@
             </div>
         }
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label asp-for="Title"></label>
             <input asp-for="Title" class="form-control" />
@@ -24,7 +24,7 @@
 
         <div class="form-group">
             <label asp-for="Language"></label>
-            <select asp-for="Language" class="form-control" asp-items="new SelectList(ViewBag.Languages)">
+            <select asp-for="Language" class="form-control" asp-items="ViewBag.Languages">
                 <option value="">Please select a language</option>
             </select>
             <span asp-validation-for="Language" class="text-danger"></span>
@@ -34,6 +34,18 @@
             <label asp-for="Description"></label>
             <input asp-for="Description" class="form-control" />
             <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="CoverPhoto"></label>
+            <input asp-for="CoverPhoto" class="form-control-file" />
+            <span asp-validation-for="CoverPhoto" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Gallery"></label>
+            <input asp-for="Gallery" class="form-control-file" />
+            <span asp-validation-for="Gallery" class="text-danger"></span>
         </div>
 
         <div class="form-group">

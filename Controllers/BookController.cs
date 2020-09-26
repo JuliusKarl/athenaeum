@@ -1,8 +1,13 @@
 ﻿using BookStore.Models;
 using BookStore.Repository;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,8 +16,10 @@ namespace BookStore.Controllers
     public class BookController : Controller
     {
         private readonly BookRepository _bookRepository = null;
-        public BookController(BookRepository bookRepository)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public BookController(BookRepository bookRepository, IWebHostEnvironment webHostEnvironment)
         {
+            _webHostEnvironment = webHostEnvironment;
             _bookRepository = bookRepository;
         }
         [Route("All")]
@@ -39,7 +46,11 @@ namespace BookStore.Controllers
         [Route("New")]
         public ViewResult AddNewBook(bool isSuccess = false, int bookId = 0)
         {
-            ViewBag.Languages = new List<String>() { "English", "Korean", "Japanese", "Chinese" };
+            ViewBag.Languages = GetLanguage().Select(x => new SelectListItem()
+            {
+                Text = x.Text,
+                Value = x.Id.ToString()
+            }).ToList();
             ViewData["Title"] = "New Book";
             ViewBag.IsSuccess = isSuccess;
             ViewBag.BookId = bookId;
@@ -50,14 +61,59 @@ namespace BookStore.Controllers
         public async Task<IActionResult> AddNewBook(BookModel bookModel)
         {
             ViewData["Title"] = "New Book";
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) // Check if the book has all the required details
             {
+                if (bookModel.CoverPhoto != null) // Check if a cover photo has been uploaded
+                {
+                    string folder = "books/cover/";
+                    bookModel.CoverPhotoUrl = await uploadImage(folder, bookModel.CoverPhoto);
+                }
+
+                if (bookModel.Gallery != null) // Check if multiple photos have been uploaded
+                {
+                    string folder = "books/gallery/";
+
+                    bookModel.GalleryUrl = new List<GalleryModel>();
+
+                    foreach (var file in bookModel.Gallery) {
+                        var gallery = new GalleryModel()
+                        {
+                            Name = file.FileName,
+                            Url = await uploadImage(folder, file)
+                        };
+                        bookModel.GalleryUrl.Add(gallery);
+                    }
+                }
+
                 int id = await _bookRepository.AddNewBook(bookModel);
                 if (id > 0) { return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookId = id }); }
             }
+
+            ViewBag.Languages = new SelectList(GetLanguage(), "Id", "Text");
             ViewBag.IsSuccess = false;
             ViewBag.BookId = 0;
             return View();
+        }
+
+        private Task uploadImage(string folder, KeyValuePair<string, StringValues> file)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task<String> uploadImage(string folderPath, IFormFile image)
+        {
+            folderPath += Guid.NewGuid().ToString() + '_' + image.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await image.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return "/" + folderPath;
+        }
+
+        private List<LanguageModel> GetLanguage() {
+            return new List<LanguageModel>() { 
+                new LanguageModel() { Id = 1, Text = "English"},
+                new LanguageModel() { Id = 2, Text = "Chinese"},
+                new LanguageModel() { Id = 3, Text = "Japanese"},
+            };
         }
     }
 }
