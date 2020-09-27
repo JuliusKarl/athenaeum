@@ -23,5 +23,8 @@ namespace BookStore.Models
         public string CoverPhotoUrl { get; set; }
         public List<IFormFile> Gallery { get; set; }
         public List<GalleryModel> GalleryUrl { get; set; }
+        [Required]
+        public IFormFile PDF { get; set; }
+        public string PDFUrl { get; set; }
     }
 }

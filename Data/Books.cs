@@ -14,5 +14,6 @@ namespace BookStore.Data
         public string Description { get; set; }
         public string CoverPhotoUrl { get; set; }
         public ICollection<Gallery> Gallery { get; set; }
+        public string PDFUrl { get; set; }
     }
 }

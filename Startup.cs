@@ -17,11 +17,12 @@ namespace BookStore
         public void ConfigureServices(IServiceCollection services) 
         {
             services.AddControllersWithViews();
-            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=athenaeum.ct5iksibomdv.us-east-1.rds.amazonaws.com,1433; Database=athenaeum; User Id=Julius; Password=Juliuskarl24031997;"));
-            //services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.; Database=BookStore; Trusted_Connection=true;"));
 
 #if DEBUG  
             services.AddRazorPages().AddRazorRuntimeCompilation();
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=.; Database=BookStore; Trusted_Connection=true;"));
+#else
+            services.AddDbContext<BookStoreContext>(options => options.UseSqlServer("Server=athenaeum.ct5iksibomdv.us-east-1.rds.amazonaws.com,1433; Database=athenaeum; User Id=Julius; Password=Juliuskarl24031997;"));
 #endif
             services.AddScoped<BookRepository, BookRepository>();
         }

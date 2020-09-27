@@ -85,6 +85,12 @@ namespace BookStore.Controllers
                     }
                 }
 
+                if (bookModel.PDF != null) // Check if a PDF file has been uploaded
+                {
+                    string folder = "books/pdf/";
+                    bookModel.PDFUrl = await uploadPDF(folder, bookModel.PDF);
+                }
+
                 int id = await _bookRepository.AddNewBook(bookModel);
                 if (id > 0) { return RedirectToAction(nameof(AddNewBook), new { isSuccess = true, bookId = id }); }
             }
@@ -98,13 +104,21 @@ namespace BookStore.Controllers
         private Task uploadImage(string folder, KeyValuePair<string, StringValues> file)
         {
             throw new NotImplementedException();
-        }
+        } 
 
         private async Task<String> uploadImage(string folderPath, IFormFile image)
         {
             folderPath += Guid.NewGuid().ToString() + '_' + image.FileName;
             string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
             await image.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return "/" + folderPath;
+        }
+
+        private async Task<String> uploadPDF(string folderPath, IFormFile pdf)
+        {
+            folderPath += Guid.NewGuid().ToString() + '_' + pdf.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await pdf.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
             return "/" + folderPath;
         }
 

@@ -45,6 +45,7 @@ namespace BookStore.Repository
                     Description = book.Description,
                     Id = book.Id,
                     CoverPhotoUrl = book.CoverPhotoUrl,
+                    PDFUrl = book.PDFUrl,
                     GalleryUrl = book.Gallery.Select(g => new GalleryModel()
                     {
                         Id = g.Id,
@@ -80,6 +81,7 @@ namespace BookStore.Repository
                 Author = model.Author,
                 Description = model.Description,
                 CoverPhotoUrl = model.CoverPhotoUrl,
+                PDFUrl = model.PDFUrl
             };
 
             newBook.Gallery = new List<Gallery>();
