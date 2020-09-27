@@ -6,26 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200919101953_init.cs" />
-    <Compile Remove="Migrations\20200919101953_init.Designer.cs" />
-    <Compile Remove="Migrations\20200926121210_initMigration.cs" />
-    <Compile Remove="Migrations\20200926121210_initMigration.Designer.cs" />
-    <Compile Remove="Migrations\20200926131628_init.cs" />
-    <Compile Remove="Migrations\20200926131628_init.Designer.cs" />
-    <Compile Remove="Migrations\20200926132229_addedCoverPhotoUrl.cs" />
-    <Compile Remove="Migrations\20200926132229_addedCoverPhotoUrl.Designer.cs" />
-    <Compile Remove="Migrations\20200926134702_init.cs" />
-    <Compile Remove="Migrations\20200926134702_init.Designer.cs" />
-    <Compile Remove="Migrations\20200926140025_init.cs" />
-    <Compile Remove="Migrations\20200926140025_init.Designer.cs" />
-    <Compile Remove="Migrations\20200926144256_init.cs" />
-    <Compile Remove="Migrations\20200926144256_init.Designer.cs" />
-    <Compile Remove="Migrations\20200926171807_AddedBookGallery.cs" />
-    <Compile Remove="Migrations\20200926171807_AddedBookGallery.Designer.cs" />
-    <Compile Remove="Migrations\20200926173056_gallery.cs" />
-    <Compile Remove="Migrations\20200926173056_gallery.Designer.cs" />
-    <Compile Remove="Migrations\20200926175658_init.cs" />
-    <Compile Remove="Migrations\20200926175658_init.Designer.cs" />
+    <Compile Remove="Migrations\20200926235038_init.cs" />
+    <Compile Remove="Migrations\20200926235038_init.Designer.cs" />
+    <Compile Remove="Migrations\20200927011415_awsrdsdb.cs" />
+    <Compile Remove="Migrations\20200927011415_awsrdsdb.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

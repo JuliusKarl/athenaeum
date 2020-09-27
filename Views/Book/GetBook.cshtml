@@ -7,13 +7,13 @@
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     @for (int i = 0; i < Model.GalleryUrl.Count(); i++) {
-                        <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i == 0? "active" : "") "></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="@i" class="@(i==0 ? "active" : "")"></li>
                     }   
                 </ol>
                 <div class="carousel-inner">
                     @for (int i = 0; i < Model.GalleryUrl.Count(); i++)
                     {
-                    <div class="@(i == 0? "carousel-item-active" : "carousel-item") ">
+                    <div class="@(i == 0 ? "carousel-item active" : "carousel-item") ">
                         <img class="d-block w-100" src="@Model.GalleryUrl[i].Url" alt="@Model.GalleryUrl[i].Name">
                     </div>
                     }
